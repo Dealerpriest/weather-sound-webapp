@@ -10,8 +10,9 @@
     <p id='server-time'></p>
     <script>
       var HOST = location.origin.replace(/^http/, 'ws');
+      var ws = new WebSocket(HOST);
       // var ws = new WebSocket('wss://weather-sound-webapp.herokuapp.com');
-      var ws = new WebSocket('wss://localhost/');
+      // var ws = new WebSocket('wss://localhost/');
       var el = document.getElementById('server-time');
 
       ws.onmessage = function (event) {
