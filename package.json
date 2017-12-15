@@ -1,0 +1,31 @@
+{
+  "name": "weather-sound-webapp",
+  "version": "1.0.0",
+  "description": "websocket server for handling weather sound project",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dealerpriest/weather-sound-webapp.git"
+  },
+  "keywords": [
+    "websocket",
+    "weewx",
+    "OSC",
+    "middleware"
+  ],
+  "author": "Gunnar Oledal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Dealerpriest/weather-sound-webapp/issues"
+  },
+  "homepage": "https://github.com/Dealerpriest/weather-sound-webapp#readme",
+  "dependencies": {
+    "bufferutil": "^3.0.3",
+    "express": "^4.16.2",
+    "utf-8-validate": "^4.0.0",
+    "ws": "^3.3.2"
+  }
+}
