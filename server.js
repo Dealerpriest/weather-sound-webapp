@@ -4,7 +4,7 @@ const express = require('express');
 const SocketServer = require('ws').Server;
 const path = require('path');
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 443;
 const INDEX = path.join(__dirname, 'index.html');
 
 const server = express()
@@ -16,9 +16,10 @@ const wss = new SocketServer({ server });
 wss.on('connection', (ws) => {
   console.log('Client connected');
   ws.on('close', () => console.log('Client disconnected'));
+  ws.on('message', (data) => {
+      ws.send(data);
+  });
 });
-
-wss.on('event')
 
 // setInterval(() => {
 //   wss.clients.forEach((client) => {
