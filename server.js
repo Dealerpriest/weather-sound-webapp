@@ -13,6 +13,13 @@ const server = express()
 
 const wss = new SocketServer({ server });
 
+// function verifyClient(info) {
+//     if(info.req){
+
+//     }
+//     return true;
+// }
+
 function heartbeat() {
     this.isAlive = true;
 }
