@@ -24,7 +24,7 @@ wss.on('connection', (ws) => {
   ws.isAlive = true;
   ws.on('pong', heartbeat);
   ws.on('message', (data) => {
-      ws.send(data);
+      ws.send('thx! Here it comes back' + data);
   });
 });
 
