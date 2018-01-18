@@ -34,7 +34,7 @@ wss.on('connection', (ws, req) => {
   else{
     ws.isTrusted = false;
   }
-  // console.log(ws);
+  console.log('trusted:' + ws.isTrusted);
   // console.log('with req:');
   // console.log(req);
   ws.on('close', () => console.log('Client disconnected'));
