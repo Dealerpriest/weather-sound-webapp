@@ -26,9 +26,11 @@ function heartbeat() {
     this.isAlive = true;
 }
 
-wss.on('connection', (ws) => {
+wss.on('connection', (ws, req) => {
   console.log('Client connected:');
-//   console.log(ws);
+  console.log(ws);
+  console.log('with req:');
+  console.log(req);
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.isAlive = true;
