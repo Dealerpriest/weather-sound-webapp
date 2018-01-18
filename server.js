@@ -14,11 +14,11 @@ const server = express()
   .use((req, res) => res.sendFile(INDEX) )
   .listen(PORT, () => console.log(`Listening on ${ PORT }`));
 
-const wss = new SocketServer({ server, verifyClient });
+const wss = new SocketServer({ server });
 
-function verifyClient(info) {
+function verifyClient(req) {
     // return true
-    var token = util.gup('token', info.req.url);
+    var token = util.gup('token', req.url);
     return token === WEATHERSTATIONTOKEN || token === ELECTRONAPPTOKEN;
 }
 
@@ -27,15 +27,24 @@ function heartbeat() {
 }
 
 wss.on('connection', (ws, req) => {
-  console.log('Client connected:');
-  console.log(ws);
-  console.log('with req:');
-  console.log(req);
+  console.log('Client connected:' + req.url);
+  if(verifyClient(req)){
+    ws.isTrusted = true;
+  }
+  else{
+    ws.isTrusted = false;
+  }
+  // console.log(ws);
+  // console.log('with req:');
+  // console.log(req);
   ws.on('close', () => console.log('Client disconnected'));
   
   ws.isAlive = true;
   ws.on('pong', heartbeat);
   ws.on('message', (data) => {
+    if(!ws.isTrusted){
+      return;
+    }
     console.log('recieved packet');
       wss.clients.forEach(socket => {
           if(socket !== ws){
